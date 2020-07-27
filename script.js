@@ -128,11 +128,18 @@ async function insertion()
         while (j >= 0 && arr[j].offsetHeight > key) {
 
             changeColor(arr[j], "green");
+            if (j + 1 != i) {
+                changeColor(arr[j + 1], "green");
+            }
             
             swap(arr[j + 1], arr[j]);
 
             await new Promise(r => setTimeout(r, 200));
             changeColor(arr[j], "black");
+            if (j + 1 != i) {
+                changeColor(arr[j + 1], "black");
+            }
+            
             
             j = j - 1;
             
