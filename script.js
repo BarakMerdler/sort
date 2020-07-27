@@ -118,27 +118,27 @@ async function insertion()
     
     for (let i = 1; i < arrSize; ++i) {
         let key = arr[i].offsetHeight;
+        let hei = arr[i].style.height;
         let j = i - 1;
 
-        let left = arr[j];
-        let right = arr[j+1];
+        changeColor(arr[i-1], "black")
 
-        changeColor(arr[i], "green");
+        changeColor(arr[i], "red");
         await new Promise(r => setTimeout(r, 200));
         while (j >= 0 && arr[j].offsetHeight > key) {
 
             changeColor(arr[j], "green");
-            changeColor(arr[j + 1], "green");
+            
             swap(arr[j + 1], arr[j]);
 
             await new Promise(r => setTimeout(r, 200));
             changeColor(arr[j], "black");
-            changeColor(arr[j + 1], "black");
+            
             j = j - 1;
             
         }
-        arr[j + 1].style.height = `${key}px`;
-
+        arr[j + 1].style.height = hei;
+        changeColor(arr[j+1], "black")
 
     }
 
