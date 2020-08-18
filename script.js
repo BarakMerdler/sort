@@ -34,27 +34,37 @@ function drewTheLines(params) {
     }
 }
 
-function roadMap()
+async function roadMap()
 {
     const elemnt = document.getElementById("sorts-types");
     const value = elemnt.options[elemnt.selectedIndex].value;
     
+    const btn = document.getElementById("btn");
+    const range = document.getElementById("myRange");
+
+    const arrSize = document.getElementById("main-section").childElementCount;
+    const arr = document.getElementById("main-section").children;
+
+    btn.disabled = true;
+    range.disabled = true;
 
 
     switch (value) {
         case "bubble":
-            bubblesort();
+            await bubblesort(arrSize, arr);
             break;
         case "insertion":
-            insertion();
+            await insertion(arrSize, arr);
             break;
         case "selection":
-            selection();
+            await selection(arrSize, arr);
             break;
                 
         default:
             break;
     }
+    range.disabled = false;
+    btn.disabled = false;
 
 }
 
@@ -70,15 +80,8 @@ function swap(right, left)
     left.style.height = right.style.height;
     right.style.height = temp;  
 }
-async function bubblesort()
+async function bubblesort(arrSize, arr)
 {
-    const arrSize = document.getElementById("main-section").childElementCount;
-    const arr = document.getElementById("main-section").children;
-    const btn = document.getElementById("btn");
-    const range = document.getElementById("myRange");
-
-    btn.disabled = true;
-    range.disabled = true;
 
     for (let i = 0; i < arrSize - 1; ++i) {
         for (let j = 0; j < arrSize - i - 1; ++j) {
@@ -102,19 +105,11 @@ async function bubblesort()
         
     }
 
-    range.disabled = false;
-    btn.disabled = false;
+
 }
 
-async function insertion()
+async function insertion(arrSize, arr)
 {
-    const arrSize = document.getElementById("main-section").childElementCount;
-    const arr = document.getElementById("main-section").children;
-    const btn = document.getElementById("btn");
-    const range = document.getElementById("myRange");
-
-    btn.disabled = true;
-    range.disabled = true;
     
     for (let i = 1; i < arrSize; ++i) {
         let key = arr[i].offsetHeight;
@@ -149,19 +144,10 @@ async function insertion()
 
     }
 
-    range.disabled = false;
-    btn.disabled = false;
 }
 
-async function selection()
+async function selection(arrSize, arr)
 {
-    const arrSize = document.getElementById("main-section").childElementCount;
-    const arr = document.getElementById("main-section").children;
-    const btn = document.getElementById("btn");
-    const range = document.getElementById("myRange");
-
-    btn.disabled = true;
-    range.disabled = true;
 
     for (let i = 0; i < arrSize - 1; ++i) {
         let min_index = i;
@@ -184,6 +170,4 @@ async function selection()
     }
 
 
-    range.disabled = false;
-    btn.disabled = false;
 }
